@@ -1,5 +1,6 @@
 import React from 'react';
 import Backlog from './components/Backlog/Backlog';
+import Ready from './components/Ready/Ready';
 import './App.css';
 
 
@@ -25,7 +26,7 @@ class App extends React.Component {
           </div>
           <div className="block">
           <h1>Ready</h1>
-          
+          <Ready />
           </div>
           <div className="block">
           <h1>In Progress</h1>

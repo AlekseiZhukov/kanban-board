@@ -4,7 +4,7 @@
 .conteiner {
   display: flex;
   flex-flow: row wrap;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-around;
   max-width: 1200px;
   margin:50px auto;
@@ -30,4 +30,83 @@ h1 {
   margin: 0;
 }
 
+.backlog {
+  display: flex;
+  flex-flow: column nowrap;
+  margin-top: 10px;
+  height: auto;
+  font-family: 'Roboto', sans-serif;
+  
+}
+
+.table {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+
+.listItemOff,
+.DropdownOff,
+.inputOff {
+  display: none;
+}
+
+.listItemOn,
+.dropdownOn,
+.inputOn {
+  display: block;
+  position: relative;
+}
+
+.dropdownOn::before {
+  content: "\2B9F";
+  font-size: 30px;
+  position: absolute;
+  top: -5px;
+  left: 200px;
+  color: #0079BF
+  
+}
+
+.listItemOn {
+  background-color: #FFFFFF;
+  height: 100px;
+  overflow: auto;
+
+}
+
+
+.dropdownOn,
+.input {
+  height: 35px;
+  border-radius: 5px;
+  background: #FFFFFF;
+  border: 0 none;
+  margin-bottom: 15px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+
+}
+
+.button_box {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+.addTask,
+.btnSubmitOn {
+  display: block;
+  background-color: #EBECF0;
+  color: #5E6C84;
+  border: 0 none;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+}
+
+.btnSubmitOff {
+  display: none;
+}
+
+ 
 

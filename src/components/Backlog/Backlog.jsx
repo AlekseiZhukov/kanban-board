@@ -14,9 +14,21 @@ class Backlog extends React.Component {
             inputValue: '',
         }
     }
+            
+    retrievingData = async () => {
+        
+            const data =  await JSON.parse(sessionStorage.getItem("data"));
+            if (data) {
+                this.setState({ tasks: data });
+                
+            } 
+        }
 
+     componentDidMount() {
+        this.retrievingData();
+    } 
         onChangeInput = (event) => {
-            //console.log(event.target.value);
+            
             this.setState({
                 inputValue: event.target.value,
                 disabledBtnSubmit: true,
@@ -32,15 +44,18 @@ class Backlog extends React.Component {
         
         onClickBtnSubmit =()=> {
             const {inputValue, tasks} = this.state;
+            
                 this.setState({
-                    tasks: [...tasks, inputValue ],
+                    tasks: [...tasks, {title: "backlog", name: inputValue, description: '' } ],
                     inputValue: '',
                     disabledInput: false,
                     disabledBtnSubmit: false,
             });
-            
+                 
 
         }
+
+       
         addTaskToEnter = (event) => {
             if (event.key === 'Enter') {
                 this.onClickBtnSubmit()
@@ -51,16 +66,20 @@ class Backlog extends React.Component {
         render() {
             const {disabledInput, inputValue, tasks, disabledBtnSubmit} = this.state;
             
+            sessionStorage.setItem("data", JSON.stringify(this.state.tasks));
             return (
                 <div className="backlog">
                     <div className="table">
                         {tasks.map((task, index)=> {
-                            return (
-                                <TableElement 
-                                taskName={task}
-                                key={index}
-                                />
-                            )
+                            if (task.title === "backlog") {
+                                return ( 
+                                    <TableElement 
+                                    taskName={task.name}
+                                    key={index}
+                                    />
+                                )
+                            }
+                            
                         } )}
                         
                     </div>
