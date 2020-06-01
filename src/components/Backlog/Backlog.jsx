@@ -15,18 +15,19 @@ class Backlog extends React.Component {
         }
     }
             
-    retrievingData = async () => {
+    /* retrievingData = async () => {
         
             const data =  await JSON.parse(sessionStorage.getItem("data"));
             if (data) {
                 this.setState({ tasks: data });
                 
             } 
-        }
+        } */
 
-     componentDidMount() {
-        this.retrievingData();
-    } 
+      componentDidMount() {
+        //this.retrievingData();
+        this.setState({tasks: this.props.tasks})
+    }  
         onChangeInput = (event) => {
             
             this.setState({
@@ -51,8 +52,8 @@ class Backlog extends React.Component {
                     disabledInput: false,
                     disabledBtnSubmit: false,
             });
-                 
-
+            this.props.updateTasks(this.state.tasks);     
+            
         }
 
        
@@ -66,7 +67,7 @@ class Backlog extends React.Component {
         render() {
             const {disabledInput, inputValue, tasks, disabledBtnSubmit} = this.state;
             
-            sessionStorage.setItem("data", JSON.stringify(this.state.tasks));
+            //sessionStorage.setItem("data", JSON.stringify(this.state.tasks));
             return (
                 <div className="backlog">
                     <div className="table">
