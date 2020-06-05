@@ -3,12 +3,12 @@ import React from 'react';
 
 
 
-const ListItem = ({taskName, onClick, id}) => {
+const ListItem = ({taskName, onClick, id, className}) => {
   
     return (
       
   <div className="ListItem">
-      <p id={id} onClick={onClick}>{taskName}</p>
+      <p id={id} className={className} onClick={onClick}>{taskName}</p>
         
   </div>
   );

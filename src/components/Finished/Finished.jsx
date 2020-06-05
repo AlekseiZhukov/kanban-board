@@ -3,36 +3,37 @@ import Table from '../Table/Table';
 import Button from '../Button/Button';
 import ListItem from '../ListItem/ListItem';
 import Dropdown from '../Dropdown/Dropdown';
-class Ready extends React.Component {
-    
 
-    render() {
+class InProgress extends React.Component {
+
+
+    render () {
         const { state, onClickBtnAdd, onClickListItem, onClickDropdown } = this.props;
-        
+
         return (
             <Fragment>
                 <Table
-                    title="ready"
+                    title="finished"
                     tasks={state.tasks}
 
-                    />
+                />
 
                 <Dropdown
-                    id ="dropdownReady"
-                    className={state.disabledDropdown && state.nameDropdown === "ready" ? 'dropdownOn' : "dropdownOff"}
+                    id ="dropdownFinished"
+                    className={state.disabledDropdown && state.nameDropdown === "finished" ? 'dropdownOn' : "dropdownOff"}
                     onClick ={onClickDropdown}
                 />
-                                 
-                <div className={state.disabledListItem && state.nameListItem === "dropdownReady" ? 'listItemOn' : "listItemOff"}>                     
+
+                <div className={state.disabledListItem && state.nameListItem === "dropdownFinished" ? 'listItemOn' : "listItemOff"}>                     
                         {state.tasks.map((task, index)=> {
-                            if (task.title === "backlog") {
+                            if (task.title === "inprogress") {
                                 return (
                                     <ListItem 
                                     taskName={task.name}
                                     key={index}
                                     id={index}
                                     onClick={onClickListItem}
-                                    className="listItemReady"
+                                    className="listItemFinished"
                                     />
                                 ) } else return null; 
                             } )}
@@ -44,18 +45,15 @@ class Ready extends React.Component {
                             className="addTask"
                             value="+Add card"
                             onClick ={onClickBtnAdd}
-                            id = "ready"
+                            id="finished"
                         />
                         
                      </div>
 
             </Fragment>
         )
+
     }
-
-
-
-
 }
 
-export default Ready;
+export default InProgress;

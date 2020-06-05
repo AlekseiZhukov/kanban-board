@@ -3,7 +3,7 @@ import React from 'react';
 
 
  
-const Button = ({value, onClick, className}) => {
+const Button = ({value, onClick, className, id}) => {
   
       return (
         
@@ -11,6 +11,7 @@ const Button = ({value, onClick, className}) => {
       type="button"
       value={value}
       onClick={onClick}
+      id={id}
     /> 
     );
   

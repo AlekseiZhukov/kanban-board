@@ -5,11 +5,7 @@ import React from 'react';
  
 class Input extends React.Component {
 
-  constructor (props) {
-    super(props);
-    
-}
-
+  
   render(){
     const {value, style, onChange, className, onKeyPress} = this.props;
     

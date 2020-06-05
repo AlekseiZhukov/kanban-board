@@ -3,12 +3,12 @@ import './style.css'
 
 
 
-const TableElement = ({taskName}) => {
+const TableElement = ({taskName, id}) => {
   
     return (
       
-  <div className="TableElement">
-      <p>{taskName}</p>
+  <div className="TableElement" id={id}>
+      {taskName}
         
   </div>
   );
