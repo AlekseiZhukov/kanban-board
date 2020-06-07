@@ -3,6 +3,7 @@ import Backlog from './components/Backlog/Backlog';
 import Ready from './components/Ready/Ready';
 import InProgress from './components/InProgress/InProgress';
 import Finished from './components/Finished/Finished';
+import Footer from './components/Footer/Footer';
 import './App.css';
 
 
@@ -14,22 +15,28 @@ class App extends React.Component {
       super(props);
       this.state= {
         tasks: [],
-        disabledInput: false,
-        disabledBtnSubmit: false,
+        enabledInput: false,
+        enabledBtnSubmit: false,
         inputValue: '',
-        disabledDropdown: false,
-        disabledListItem: false,
+        enabledDropdown: false,
+        enabledListItem: false,
+        enableAddButton: false,
+        nameAddButton: '',
         nameDropdown: '',
         nameListItem: '',
+        activeTasks: 0,
+        finishedTasks: 0,
         
       }
+     
     }
+
 
   onChangeInput = (event) => {
     
     this.setState({
         inputValue: event.target.value,
-        disabledBtnSubmit: true,
+        enabledBtnSubmit: true,
     })
   }
 
@@ -52,15 +59,15 @@ class App extends React.Component {
     
     if (event.target.id === "backlog") {
       this.setState({
-        disabledInput: true,
+        enabledInput: true,
 
       });
     } if (event.target.id === "ready") {
       tasks.forEach ((item) => {
         if (item.title === "backlog") {
            this.setState ({
-             disabledDropdown: true,
-             nameDropdown: event.target.id
+            enabledDropdown: true,
+            nameDropdown: event.target.id
             });
           } 
         });
@@ -68,7 +75,7 @@ class App extends React.Component {
       tasks.forEach((item) => {
         if(item.title === "ready") {
           this.setState({
-            disabledDropdown: true,
+            enabledDropdown: true,
             nameDropdown: event.target.id
           })
         }
@@ -77,19 +84,19 @@ class App extends React.Component {
       tasks.forEach((item) => {
         if(item.title === "inprogress") {
           this.setState({
-            disabledDropdown: true,
+            enabledDropdown: true,
             nameDropdown: event.target.id
           })
         }
       })
     } else return null
-        
+   
   }
 
   onClickDropdown = (event) => {
     
     this.setState({
-      disabledListItem: true,
+      enabledListItem: true,
       nameListItem: event.target.id
     })
     
@@ -115,14 +122,14 @@ class App extends React.Component {
           
         } else return null
     }); 
-  
+    
     this.setState({
         tasks: tasks,
-        disabledListItem: false,
-        disabledDropdown: false,
+        enabledListItem: false,
+        enabledDropdown: false,
         
     });
-
+    
 }
 
 
@@ -133,21 +140,27 @@ class App extends React.Component {
         this.setState({
             tasks: [...tasks, {title: "backlog", name: inputValue, description: '' } ],
             inputValue: '',
-            disabledInput: false,
-            disabledBtnSubmit: false,
-            disabledDropdown: false,
+            enabledInput: false,
+            enabledBtnSubmit: false,
+            enabledDropdown: false,
             
     });
-      
+    
   }
 
 
   render() {
     
     return (
-      <div>
-        <header></header>
+      
+      <div className="wrapper">
+        
+        <header className="header">
+          
+        </header>
+
         <div className="conteiner">
+          
           <div className="block">
             <h1>Backlog</h1>
             <Backlog
@@ -155,10 +168,9 @@ class App extends React.Component {
               onClickBtnAdd={this.onClickBtnAdd}
               onClickBtnSubmit={this.onClickBtnSubmit}
               onChangeInput={this.onChangeInput}
-             
-
-              />
+            />
           </div>
+
           <div className="block">
             <h1>Ready</h1>
             <Ready
@@ -167,8 +179,8 @@ class App extends React.Component {
               onClickDropdown = {this.onClickDropdown}
               onClickListItem = {this.onClickListItem}
             />
-          
           </div>
+
           <div className="block">
             <h1>In Progress</h1>
             <InProgress
@@ -178,21 +190,28 @@ class App extends React.Component {
               onClickListItem = {this.onClickListItem}
             />
           </div>
-          <div className="block">
-          <h1>Finished</h1>
-          <Finished
-              state={this.state}
-              onClickBtnAdd = {this.onClickBtnAdd}
-              onClickDropdown = {this.onClickDropdown}
-              onClickListItem = {this.onClickListItem}
-            />
-          </div>
 
-          
-          
+          <div className="block">
+            <h1>Finished</h1>
+            <Finished
+                state={this.state}
+                onClickBtnAdd = {this.onClickBtnAdd}
+                onClickDropdown = {this.onClickDropdown}
+                onClickListItem = {this.onClickListItem}
+              />
+          </div>
         </div>
-        <footer></footer>
-    </div>
+
+        <footer className="footer">
+          <Footer
+            tasks={this.state.tasks}
+            
+          />
+          
+        </footer>
+
+      </div>  
+    
     );
   }
 }

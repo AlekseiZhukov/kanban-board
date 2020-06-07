@@ -8,7 +8,7 @@ class Ready extends React.Component {
 
     render() {
         const { state, onClickBtnAdd, onClickListItem, onClickDropdown } = this.props;
-        
+        const flagAddButton = state.tasks.find(task => task.title === "backlog")
         return (
             <Fragment>
                 <Table
@@ -19,11 +19,11 @@ class Ready extends React.Component {
 
                 <Dropdown
                     id ="dropdownReady"
-                    className={state.disabledDropdown && state.nameDropdown === "ready" ? 'dropdownOn' : "dropdownOff"}
+                    className={state.enabledDropdown && state.nameDropdown === "ready" ? 'dropdownOn' : "dropdownOff"}
                     onClick ={onClickDropdown}
                 />
                                  
-                <div className={state.disabledListItem && state.nameListItem === "dropdownReady" ? 'listItemOn' : "listItemOff"}>                     
+                <div className={state.enabledListItem && state.nameListItem === "dropdownReady" ? 'listItemOn' : "listItemOff"}>                     
                         {state.tasks.map((task, index)=> {
                             if (task.title === "backlog") {
                                 return (
@@ -41,7 +41,7 @@ class Ready extends React.Component {
 
                 <div className="button_box">
                         <Button
-                            className="addTask"
+                            className={flagAddButton ? "addTask" : "addTask addTaskOff"}
                             value="+Add card"
                             onClick ={onClickBtnAdd}
                             id = "ready"

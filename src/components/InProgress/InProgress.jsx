@@ -9,7 +9,7 @@ class InProgress extends React.Component {
 
     render () {
         const { state, onClickBtnAdd, onClickListItem, onClickDropdown } = this.props;
-
+        const flagAddButton = state.tasks.find(task => task.title === "ready")
         return (
             <Fragment>
                 <Table
@@ -20,11 +20,11 @@ class InProgress extends React.Component {
 
                 <Dropdown
                     id ="dropdownInProgress"
-                    className={state.disabledDropdown && state.nameDropdown === "inprogress" ? 'dropdownOn' : "dropdownOff"}
+                    className={state.enabledDropdown && state.nameDropdown === "inprogress" ? 'dropdownOn' : "dropdownOff"}
                     onClick ={onClickDropdown}
                 />
 
-                <div className={state.disabledListItem && state.nameListItem === "dropdownInProgress" ? 'listItemOn' : "listItemOff"}>                     
+                <div className={state.enabledListItem && state.nameListItem === "dropdownInProgress" ? 'listItemOn' : "listItemOff"}>                     
                         {state.tasks.map((task, index)=> {
                             if (task.title === "ready") {
                                 return (
@@ -42,7 +42,7 @@ class InProgress extends React.Component {
 
                 <div className="button_box">
                         <Button
-                            className="addTask"
+                            className={flagAddButton ? "addTask" : "addTask addTaskOff"}
                             value="+Add card"
                             onClick ={onClickBtnAdd}
                             id="inprogress"

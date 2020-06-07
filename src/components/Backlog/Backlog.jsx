@@ -8,11 +8,11 @@ class Backlog extends React.Component {
     
         
     
-        addTaskToEnter = (event) => {
-            if (event.key === 'Enter') {
+    addTaskToEnter = (event) => {
+        if (event.key === 'Enter') {
                 this.props.onClickBtnSubmit()
-            }  
-        }
+        }  
+    }
    
         
         render() {
@@ -26,7 +26,7 @@ class Backlog extends React.Component {
 
                     />
                     
-                    <Input className={state.disabledInput ? 'inputOn' : "inputOff"}
+                    <Input className={state.enabledInput ? 'inputOn' : "inputOff"}
                         value={state.inputValue}
                         onChange={onChangeInput}
                         onKeyPress={this.addTaskToEnter}
@@ -42,7 +42,7 @@ class Backlog extends React.Component {
                         />
 
                         <Button
-                            className={state.disabledBtnSubmit ? 'btnSubmitOn' : "btnSubmitOff"}
+                            className={state.enabledBtnSubmit ? 'btnSubmitOn' : "btnSubmitOff"}
                             value="Submit"
                             onClick ={onClickBtnSubmit}
                         />
