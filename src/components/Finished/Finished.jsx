@@ -4,11 +4,11 @@ import Button from '../Button/Button';
 import ListItem from '../ListItem/ListItem';
 import Dropdown from '../Dropdown/Dropdown';
 
-class InProgress extends React.Component {
+class Finished extends React.Component {
 
 
     render () {
-        const { state, onClickBtnAdd, onClickListItem, onClickDropdown } = this.props;
+        const { state, onClickBtn, onClickListItem, onClickDropdown } = this.props;
         const flagAddButton = state.tasks.find(task => task.title === "inprogress")
         return (
             <Fragment>
@@ -44,7 +44,7 @@ class InProgress extends React.Component {
                         <Button
                             className={flagAddButton ? "addTask" : "addTask addTaskOff"}
                             value="+Add card"
-                            onClick ={onClickBtnAdd}
+                            onClick ={onClickBtn}
                             id="finished"
                         />
                         
@@ -56,4 +56,4 @@ class InProgress extends React.Component {
     }
 }
 
-export default InProgress;
+export default Finished;

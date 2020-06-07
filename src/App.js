@@ -4,6 +4,7 @@ import Ready from './components/Ready/Ready';
 import InProgress from './components/InProgress/InProgress';
 import Finished from './components/Finished/Finished';
 import Footer from './components/Footer/Footer';
+import PageColumn from './components/PageColumn/PageColumn'
 import './App.css';
 
 
@@ -18,6 +19,7 @@ class App extends React.Component {
         enabledInput: false,
         enabledBtnSubmit: false,
         inputValue: '',
+        textAreaValue:'',
         enabledDropdown: false,
         enabledListItem: false,
         enableAddButton: false,
@@ -26,6 +28,8 @@ class App extends React.Component {
         nameListItem: '',
         activeTasks: 0,
         finishedTasks: 0,
+        showPageColumn: false,
+        namePageColumn:'',
         
       }
      
@@ -37,6 +41,12 @@ class App extends React.Component {
     this.setState({
         inputValue: event.target.value,
         enabledBtnSubmit: true,
+    })
+  }
+
+  textareaHandleChange = (event) => {
+    this.setState({
+      textAreaValue: event.target.value
     })
   }
 
@@ -54,7 +64,7 @@ class App extends React.Component {
 
   
 
-  onClickBtnAdd = (event) => {
+  onClickBtn = (event) => {
     const {tasks} = this.state;
     
     if (event.target.id === "backlog") {
@@ -88,6 +98,11 @@ class App extends React.Component {
             nameDropdown: event.target.id
           })
         }
+      })
+    } if (event.target.id === "btnClosePageColumn"){
+      this.setState ({
+        showPageColumn: false,
+        namePageColumn: '',
       })
     } else return null
    
@@ -133,10 +148,21 @@ class App extends React.Component {
 }
 
 
-  onClickBtnSubmit =()=> {
-    
-    const {inputValue, tasks} = this.state;
-     
+  onClickBtnSubmit =(event)=> {
+    console.log('onClickBtnSubmit')
+    const {inputValue, tasks, textAreaValue} = this.state;
+    const id = event.target.id
+    if (id) {
+      tasks.map((task, index) => {
+        if (+id === index) {
+          task.description = textAreaValue;
+          this.setState({
+            textAreaValue: ''
+          })
+          return alert('Сохранено')
+        }
+      })
+    } else {
         this.setState({
             tasks: [...tasks, {title: "backlog", name: inputValue, description: '' } ],
             inputValue: '',
@@ -144,13 +170,23 @@ class App extends React.Component {
             enabledBtnSubmit: false,
             enabledDropdown: false,
             
-    });
+    });}
     
   }
 
+  onClickTitle =(event) => {
+    const name = event.target.textContent;
+    this.setState({
+      showPageColumn: true,
+      namePageColumn: name,
+    })
+    console.log(event.target.textContent);
+  }
+
+  
 
   render() {
-    
+    const showPageColumn = this.state.showPageColumn;
     return (
       
       <div className="wrapper">
@@ -158,50 +194,57 @@ class App extends React.Component {
         <header className="header">
           
         </header>
+        {showPageColumn ? 
+           <PageColumn
+            textareaHandleChange = {this.textareaHandleChange}
+            title = {this.state.namePageColumn}
+            tasks={this.state.tasks}
+            onClickBtn={this.onClickBtn}
+            onClickBtnSubmit = {this.onClickBtnSubmit}
+           /> 
+           :  <div className="conteiner">
+                <div className="block">
+                <h1 onClick={this.onClickTitle}>Backlog</h1>
+                  <Backlog
+                    state={this.state}
+                    onClickBtn={this.onClickBtn}
+                    onClickBtnSubmit={this.onClickBtnSubmit}
+                    onChangeInput={this.onChangeInput}
+                    
+                  />
+                </div>
 
-        <div className="conteiner">
-          
-          <div className="block">
-            <h1>Backlog</h1>
-            <Backlog
-              state={this.state}
-              onClickBtnAdd={this.onClickBtnAdd}
-              onClickBtnSubmit={this.onClickBtnSubmit}
-              onChangeInput={this.onChangeInput}
-            />
-          </div>
+                <div className="block">
+                  <h1 onClick={this.onClickTitle}>Ready</h1>
+                  <Ready
+                    state={this.state}
+                    onClickBtn = {this.onClickBtn}
+                    onClickDropdown = {this.onClickDropdown}
+                    onClickListItem = {this.onClickListItem}
+                  />
+                </div>
 
-          <div className="block">
-            <h1>Ready</h1>
-            <Ready
-              state={this.state}
-              onClickBtnAdd = {this.onClickBtnAdd}
-              onClickDropdown = {this.onClickDropdown}
-              onClickListItem = {this.onClickListItem}
-            />
-          </div>
+                <div className="block">
+                  <h1 onClick={this.onClickTitle}>In Progress</h1>
+                  <InProgress
+                    state={this.state}
+                    onClickBtn = {this.onClickBtn}
+                    onClickDropdown = {this.onClickDropdown}
+                    onClickListItem = {this.onClickListItem}
+                  />
+                </div>
 
-          <div className="block">
-            <h1>In Progress</h1>
-            <InProgress
-              state={this.state}
-              onClickBtnAdd = {this.onClickBtnAdd}
-              onClickDropdown = {this.onClickDropdown}
-              onClickListItem = {this.onClickListItem}
-            />
-          </div>
-
-          <div className="block">
-            <h1>Finished</h1>
-            <Finished
-                state={this.state}
-                onClickBtnAdd = {this.onClickBtnAdd}
-                onClickDropdown = {this.onClickDropdown}
-                onClickListItem = {this.onClickListItem}
-              />
-          </div>
-        </div>
-
+                <div className="block">
+                  <h1 onClick={this.onClickTitle}>Finished</h1>
+                  <Finished
+                      state={this.state}
+                      onClickBtn = {this.onClickBtn}
+                      onClickDropdown = {this.onClickDropdown}
+                      onClickListItem = {this.onClickListItem}
+                    />
+                </div> 
+              </div>
+        }
         <footer className="footer">
           <Footer
             tasks={this.state.tasks}

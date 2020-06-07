@@ -5,6 +5,18 @@ body {
   background-color: #0079BF;
 }
 
+h1 {
+  font-size: 18px;
+  margin: 0 0 10px 0;
+  font-weight: normal;
+}
+
+h2 {
+  font-size: 16px;
+  margin: 0 0 10px 0;
+  font-weight: normal;
+}
+
 .root {
   margin:0 auto;
   height: 100vh;
@@ -23,23 +35,23 @@ body {
 }
 
 .conteiner {
-  width: 1200px;
+  max-width: 1235px;
   margin: 0 auto;
   display: flex;
   flex-flow: row wrap;
   align-items: flex-start;
   justify-content: space-between;
   margin-bottom: 55px;
+  height: 100%;
     
 }
 
 .block {
-  width: 230px;
+  width: 274px;
   max-height: 400px;
   overflow: auto;
   display: flex;
   flex-flow: column nowrap;
-  
   justify-content: space-between;
   background-color: #ebecf0;
   padding: 10px;
@@ -47,9 +59,17 @@ body {
   margin: 30px 7px;
 }
 
-h1 {
+.block h1:hover {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn {
+  cursor: pointer;
+  background: none;
   font-size: 18px;
-  margin: 0 0 10px 0;
+  font-family: 'Roboto', sans-serif;
+  color: #5E6C84;
 }
 
 
@@ -81,7 +101,7 @@ h1 {
   font-size: 30px;
   position: absolute;
   top: -5px;
-  left: 200px;
+  right: 2px;
   color: #0079BF
   
 }
@@ -117,9 +137,9 @@ h1 {
   display: block;
   background-color: #EBECF0;
   color: #5E6C84;
-  
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
+  font-weight: normal;
   outline: none;
   cursor: pointer;
 }
@@ -160,3 +180,58 @@ h1 {
   margin-right: 36px;
 }
 
+.pageColumn {
+  margin: 20px 20px;
+  padding: 22px 28px;
+  background:#fff;
+  display: flex;
+  flex-flow: column nowrap;
+  border-radius: 5px;
+  position: relative;
+  height: 68vh;
+}
+.pageColumn h1 {
+  font-size: 24px;
+  margin: 0 auto 10px auto;
+}
+
+.closeBtnPageColumn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 30px;
+  color: #5E6C84;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.listItemPageColumn {
+  margin: 5px 0;
+  height: 100%;
+}
+
+.pageColumn_task {
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100%;
+  
+}
+
+.pageColumn_task h2 {
+  font-size: 20px;
+}
+
+.pageColumn_task__textarea {
+  border: none;
+  border-radius: 5px;
+  border-top: 1px solid #5E6C84;
+  border-bottom: 1px solid #5E6C84;
+  font-size: 18px;
+  height: 90%;
+  margin-bottom: 20px;
+}
+
+.listItemPageColumn {
+  font-size: 20px;
+}

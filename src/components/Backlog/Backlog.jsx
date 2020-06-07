@@ -16,7 +16,7 @@ class Backlog extends React.Component {
    
         
         render() {
-            const {state, onChangeInput, onClickBtnAdd, onClickBtnSubmit} = this.props;
+            const {state, onChangeInput, onClickBtn, onClickBtnSubmit} = this.props;
                         
             return (
                 <Fragment >
@@ -37,7 +37,7 @@ class Backlog extends React.Component {
                         <Button
                             className="addTask"
                             value="+Add card"
-                            onClick ={onClickBtnAdd}
+                            onClick ={onClickBtn}
                             id = "backlog"
                         />
 
