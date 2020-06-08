@@ -106,13 +106,17 @@ h2 {
   
 }
 
+.date_string {
+  font-size: 14px;
+  font-style: italic;
+  margin: 2px 0 10px 5px;
+}
+
 .listItemOn {
   background-color: #FFFFFF;
   height: 100px;
   overflow: auto;
-
 }
-
 
 .dropdownOn,
 .input {
@@ -220,6 +224,13 @@ h2 {
 
 .pageColumn_task h2 {
   font-size: 20px;
+  margin-bottom: 2px;
+}
+
+.pageColumn_task p {
+  margin: 2px 0 10px 5px;
+  font-style: italic;
+  font-size: 14px;
 }
 
 .pageColumn_task__textarea {
@@ -230,8 +241,11 @@ h2 {
   font-size: 18px;
   height: 90%;
   margin-bottom: 20px;
+  resize: none;
+  overflow: auto;
 }
 
 .listItemPageColumn {
   font-size: 20px;
+  font-style: normal;
 }

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import ListItem from '../ListItem/ListItem';
 import Button from '../Button/Button';
 
@@ -44,7 +44,8 @@ class PageColumn extends React.Component {
                 
             {tasksDescription ?
                 <div className="pageColumn_task">
-                    <h2>{tasks[taskId].name}</h2> 
+                    <h2>{tasks[taskId].name}</h2>
+                    <p>task created: {tasks[taskId].date}</p> 
                     <textarea
                         defaultValue = {tasks[taskId].description}
                         onChange={textareaHandleChange}
@@ -76,6 +77,7 @@ class PageColumn extends React.Component {
                                     id={index}
                                     onClick={this.onClickListItem}
                                     className="listItemPageColumn"
+                                    date = {task.date}
                                 />
                                 
                             )

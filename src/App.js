@@ -151,7 +151,8 @@ class App extends React.Component {
   onClickBtnSubmit =(event)=> {
     console.log('onClickBtnSubmit')
     const {inputValue, tasks, textAreaValue} = this.state;
-    const id = event.target.id
+    const id = event.target.id;
+    const date = new Date().toUTCString();
     if (id) {
       tasks.map((task, index) => {
         if (+id === index) {
@@ -164,7 +165,7 @@ class App extends React.Component {
       })
     } else {
         this.setState({
-            tasks: [...tasks, {title: "backlog", name: inputValue, description: '' } ],
+            tasks: [...tasks, {title: "backlog", name: inputValue, description: '', date: date, } ],
             inputValue: '',
             enabledInput: false,
             enabledBtnSubmit: false,
