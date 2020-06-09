@@ -1,34 +1,23 @@
 import React from 'react';
+import { BrowseRouter as Router, Route} from "react-router-dom";
+
 
 const Home = () => <div>Home</div>
 const About = () => <div>About</div>
-const NotFaund = () => <div>404</div>
+const BlogPosts = () => <div>404</div>
 
-class HistoryAPIRoute extends React.Component {
-    state = {location: window.location}
+class ReactRouterRout extends React.Component {
+    
     
     render() {
 
-        let RouteItem
-
-        const {location} = this.state;
-        switch (location.parthname) {
-            case '/':
-                RouteItem = Home;
-                break;
-            case '/about':
-                RouteItem = About;
-                break;
-            default: 
-                RouteItem = NotFaund
-        }
         return (
-            <ul>
-                <li><a href ="/">{Home}</a></li>
-                <li><a href ="/about">{About}</a></li>
-            </ul>
+            <Router>
+                    <Route path="/" component ={Home} />
+
+            </Router>
         )
     }
 }
 
-export default HistoryAPIRoute
+export default ReactRouterRout

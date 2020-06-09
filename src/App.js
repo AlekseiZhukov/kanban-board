@@ -6,6 +6,7 @@ import Finished from './components/Finished/Finished';
 import Footer from './components/Footer/Footer';
 import PageColumn from './components/PageColumn/PageColumn'
 import './App.css';
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 
 
@@ -191,72 +192,73 @@ class App extends React.Component {
     return (
       
       <div className="wrapper">
-        
-        <header className="header">
-          
-        </header>
-        {showPageColumn ? 
-           <PageColumn
-            textareaHandleChange = {this.textareaHandleChange}
-            title = {this.state.namePageColumn}
-            tasks={this.state.tasks}
-            onClickBtn={this.onClickBtn}
-            onClickBtnSubmit = {this.onClickBtnSubmit}
-           /> 
-           :  <div className="conteiner">
-                <div className="block">
-                <h1 onClick={this.onClickTitle}>Backlog</h1>
-                  <Backlog
-                    state={this.state}
-                    onClickBtn={this.onClickBtn}
-                    onClickBtnSubmit={this.onClickBtnSubmit}
-                    onChangeInput={this.onChangeInput}
-                    
-                  />
-                </div>
+        <Router>
+        <Route path="/" exact>
+          <header className="header">
+            
+          </header>
+          {showPageColumn ? 
+            <Route path="/:type" >
+              <PageColumn
+                textareaHandleChange = {this.textareaHandleChange}
+                title = {this.state.namePageColumn}
+                tasks={this.state.tasks}
+                onClickBtn={this.onClickBtn}
+                onClickBtnSubmit = {this.onClickBtnSubmit}
+              />
+            </Route> 
+            :   
+              <div className="conteiner">
+                  <div className="block">
+                  <h1 onClick={this.onClickTitle}>Backlog</h1>
+                    <Backlog
+                      state={this.state}
+                      onClickBtn={this.onClickBtn}
+                      onClickBtnSubmit={this.onClickBtnSubmit}
+                      onChangeInput={this.onChangeInput}
+                      
+                    />
+                  </div>
 
-                <div className="block">
-                  <h1 onClick={this.onClickTitle}>Ready</h1>
-                  <Ready
-                    state={this.state}
-                    onClickBtn = {this.onClickBtn}
-                    onClickDropdown = {this.onClickDropdown}
-                    onClickListItem = {this.onClickListItem}
-                  />
-                </div>
-
-                <div className="block">
-                  <h1 onClick={this.onClickTitle}>In Progress</h1>
-                  <InProgress
-                    state={this.state}
-                    onClickBtn = {this.onClickBtn}
-                    onClickDropdown = {this.onClickDropdown}
-                    onClickListItem = {this.onClickListItem}
-                  />
-                </div>
-
-                <div className="block">
-                  <h1 onClick={this.onClickTitle}>Finished</h1>
-                  <Finished
+                  <div className="block">
+                    <h1 onClick={this.onClickTitle}>Ready</h1>
+                    <Ready
                       state={this.state}
                       onClickBtn = {this.onClickBtn}
                       onClickDropdown = {this.onClickDropdown}
                       onClickListItem = {this.onClickListItem}
                     />
-                </div> 
-              </div>
-        }
-        <footer className="footer">
-          <Footer
-            tasks={this.state.tasks}
-            
-          />
-          
-        </footer>
+                  </div>
 
+                  <div className="block">
+                    <h1 onClick={this.onClickTitle}>In Progress</h1>
+                    <InProgress
+                      state={this.state}
+                      onClickBtn = {this.onClickBtn}
+                      onClickDropdown = {this.onClickDropdown}
+                      onClickListItem = {this.onClickListItem}
+                    />
+                  </div>
+
+                  <div className="block">
+                    <h1 onClick={this.onClickTitle}>Finished</h1>
+                    <Finished
+                        state={this.state}
+                        onClickBtn = {this.onClickBtn}
+                        onClickDropdown = {this.onClickDropdown}
+                        onClickListItem = {this.onClickListItem}
+                      />
+                  </div> 
+                </div>
+          }
+                <footer className="footer">
+                  <Footer tasks={this.state.tasks}   />
+                </footer>
+          </Route>
+        </Router>
       </div>  
     
-    );
+    )
   }
 }
  

@@ -66,27 +66,28 @@ class PageColumn extends React.Component {
                             
                         />
                     </div>
-                </div> :
-                <div>
-                    {tasks.map((task, index)=> {
-                        if (task.title === title.toLowerCase().replace(/\s/,'')) {
-                            return (
-                                <ListItem 
-                                    taskName={task.name}
-                                    key={index}
-                                    id={index}
-                                    onClick={this.onClickListItem}
-                                    className="listItemPageColumn"
-                                    date = {task.date}
-                                />
-                                
-                            )
-                            
-                        } else return null; 
-                    })}
-                    
-                    
                 </div>
+                 :
+                    <div>
+                        {tasks.map((task, index)=> {
+                            if (task.title === title.toLowerCase().replace(/\s/,'')) {
+                                return (
+                                    <ListItem 
+                                        taskName={task.name}
+                                        key={index}
+                                        id={index}
+                                        onClick={this.onClickListItem}
+                                        className="listItemPageColumn"
+                                        date = {task.date}
+                                    />
+                                    
+                                )
+                                
+                            } else return null; 
+                        })}
+                        
+                        
+                    </div>
 
             }
             </div>
