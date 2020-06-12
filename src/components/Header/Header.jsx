@@ -39,6 +39,7 @@ class Header extends React.Component {
         const {clicked} = this.state;
         return (
             <div className="header_conteiner">
+                <h1>Awesome Kanban Board</h1>
                 <div className="header_conteiner_block">
                     {clicked ? 
                          <img onClick={this.onClickAvatar} src={userMenuUp} alt={"avatar"}/>

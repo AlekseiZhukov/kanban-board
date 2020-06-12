@@ -39,9 +39,10 @@ h2 {
   max-width: 1235px;
     margin: 0 auto;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     height: 55px;
+    color: #fff;
 }
 
 .header_conteiner_block {
@@ -59,6 +60,7 @@ width: 134px;
 height: 60px;
 border-radius: 5px;
 font-size: 14px;
+color: black;
 }
 
 .dropDownMenu::before {
@@ -255,7 +257,7 @@ font-size: 14px;
 }
 
 .pageColumn {
-  margin: 20px 20px;
+  margin: 20px auto;
   padding: 22px 28px;
   background:#fff;
   display: flex;
@@ -263,6 +265,7 @@ font-size: 14px;
   border-radius: 5px;
   position: relative;
   height: 68vh;
+  max-width: 1235px;
 }
 .pageColumn h1 {
   font-size: 24px;
