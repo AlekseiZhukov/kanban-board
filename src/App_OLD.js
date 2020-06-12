@@ -4,11 +4,9 @@ import Ready from './components/Ready/Ready';
 import InProgress from './components/InProgress/InProgress';
 import Finished from './components/Finished/Finished';
 import Footer from './components/Footer/Footer';
-import PageColumn from './components/PageColumn/PageColumn';
-import Button from './components/Button/Button';
-import Header from './components/Header/Header';
+import PageColumn from './components/PageColumn/PageColumn'
 import './App.css';
-import { BrowserRouter as Router, Route, Switch, Link} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Link, useRouteMatch } from "react-router-dom";
 
 
 
@@ -38,45 +36,6 @@ class App extends React.Component {
      
     }
 
-    handleClickOutside = (event) => {
-        console.log(event.target);
-      /*  if (event.target.class === "conteiner") {
-          
-          this.setState({
-            enabledListItem: false,
-            enabledDropdown: false,
-          })
-      
-      } */  
-  }
-
-  
-
-  componentDidMount () {
-    const oldTasks = JSON.parse(localStorage.getItem('tasks'));
-    if (oldTasks) {
-    this.setState ({
-      tasks: oldTasks,
-    })}
-    document.addEventListener('mousedown', this.handleClickOutside);
-  }
-  
-  
-  componentDidUpdate () {
-    const saveTasks = JSON.stringify(this.state.tasks)
-    localStorage.setItem('tasks', saveTasks);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleClickOutside);
-}
-
-  clearLocalStorage = () => {
-    localStorage.removeItem('tasks')
-    this.setState ({
-      tasks: [],
-    })
-  }
 
   onChangeInput = (event) => {
     
@@ -197,7 +156,6 @@ class App extends React.Component {
     const {inputValue, tasks, textAreaValue} = this.state;
     const id = event.target.id;
     const date = new Date().toUTCString();
-    //const saveTasks = JSON.stringify(this.state.tasks)
     if (id) {
       tasks.map((task, index) => {
         if (+id === index) {
@@ -209,7 +167,6 @@ class App extends React.Component {
         }
       })
     } else {
-
         this.setState({
             tasks: [...tasks, {title: "backlog", name: inputValue, description: '', date: date, } ],
             inputValue: '',
@@ -217,10 +174,7 @@ class App extends React.Component {
             enabledBtnSubmit: false,
             enabledDropdown: false,
             
-    });
-    
-    
-    }
+    });}
     
   }
 
@@ -236,132 +190,88 @@ class App extends React.Component {
   
 
   render() {
-    
+    const showPageColumn = this.state.showPageColumn;
+    let match = useRouteMatch();
     return (
       
       <div className="wrapper">
         
         
               <header className="header">
-                  <Header />
+                  
               </header>
         <Router>
-                  
+                  <ul>
+                    <li>
+                      <Link to="/">Home</Link>
+                    </li>
+                    
+                    <li>
+                      <Link to="/columns">Topics</Link>
+                    </li>
+                  </ul>
           <Switch>
             
               
-          
-                <Route path="/backlog">
-                  
+              {showPageColumn ? 
+                <Route path="/columns/">
                   <PageColumn
+                    match = {match}
                     textareaHandleChange = {this.textareaHandleChange}
-                    title = "Backlog"
+                    title = {this.state.namePageColumn}
                     tasks={this.state.tasks}
                     onClickBtn={this.onClickBtn}
                     onClickBtnSubmit = {this.onClickBtnSubmit}
-                  />  
-                  
+                  />
                 </Route>
-
-                <Route path="/ready">
-                
-                  <PageColumn
-                    //match = {match}
-                    textareaHandleChange = {this.textareaHandleChange}
-                    title = "Ready"
-                    tasks={this.state.tasks}
-                    onClickBtn={this.onClickBtn}
-                    onClickBtnSubmit = {this.onClickBtnSubmit}
-                  /> 
-                
-                </Route>
-
-                <Route path="/inprogress">
-                
-                  <PageColumn
-                    textareaHandleChange = {this.textareaHandleChange}
-                    title = "In Progress"
-                    tasks={this.state.tasks}
-                    onClickBtn={this.onClickBtn}
-                    onClickBtnSubmit = {this.onClickBtnSubmit}
-                  /> 
-                
-                </Route>
-
-                <Route path="/finished">
-                
-                  <PageColumn
-                    textareaHandleChange = {this.textareaHandleChange}
-                    title = "Finished"
-                    tasks={this.state.tasks}
-                    onClickBtn={this.onClickBtn}
-                    onClickBtnSubmit = {this.onClickBtnSubmit}
-                  /> 
-                
-                </Route>
-                 
+              :   
                 <Route path="/" exact>
-                  
                   <div className="conteiner">
                       <div className="block">
-                      <Link className="activeLink" to="/backlog"><h1>Backlog</h1></Link>
+                      <h1 onClick={this.onClickTitle}>Backlog</h1>
                         <Backlog
                           state={this.state}
                           onClickBtn={this.onClickBtn}
                           onClickBtnSubmit={this.onClickBtnSubmit}
                           onChangeInput={this.onChangeInput}
-                          deleteTableElement={this.deleteTableElement}
                           
                         />
                       </div>
 
                       <div className="block">
-                      <Link className="activeLink" to="/ready"><h1>Ready</h1></Link>
+                        <h1 onClick={this.onClickTitle}>Ready</h1>
                         <Ready
                           state={this.state}
                           onClickBtn = {this.onClickBtn}
                           onClickDropdown = {this.onClickDropdown}
                           onClickListItem = {this.onClickListItem}
-                          deleteTableElement={this.deleteTableElement}
                         />
                       </div>
 
                       <div className="block">
-                      <Link className="activeLink" to="/inprogress"><h1>In Progress</h1></Link>
+                        <h1 onClick={this.onClickTitle}>In Progress</h1>
                         <InProgress
                           state={this.state}
                           onClickBtn = {this.onClickBtn}
                           onClickDropdown = {this.onClickDropdown}
                           onClickListItem = {this.onClickListItem}
-                          deleteTableElement={this.deleteTableElement}
                         />
                       </div>
 
                       <div className="block">
-                      <Link className="activeLink" to="/finished"><h1>Finished</h1></Link>
+                        <h1 onClick={this.onClickTitle}>Finished</h1>
                         <Finished
                             state={this.state}
                             onClickBtn = {this.onClickBtn}
                             onClickDropdown = {this.onClickDropdown}
                             onClickListItem = {this.onClickListItem}
-                            deleteTableElement={this.deleteTableElement}
                           />
                       </div> 
-                      
                   </div>
-                  
                 </Route>
-              
+              }
           </Switch>
         </Router>
-                <div className="container_btn">
-                <Button
-                        className="delTasks"
-                        value="Del all tasks"
-                        onClick = {this.clearLocalStorage}
-                      />
-                </div>
-
                 <footer className="footer">
                   <Footer tasks={this.state.tasks}   />
                 </footer>

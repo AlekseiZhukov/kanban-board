@@ -6,15 +6,16 @@ import Dropdown from '../Dropdown/Dropdown';
 
 class InProgress extends React.Component {
 
-
+    
     render () {
-        const { state, onClickBtn, onClickListItem, onClickDropdown } = this.props;
+        const { state, onClickBtn, onClickListItem, onClickDropdown, deleteTableElement } = this.props;
         const flagAddButton = state.tasks.find(task => task.title === "ready")
         return (
             <Fragment>
                 <Table
                     title="inprogress"
                     tasks={state.tasks}
+                    deleteTableElement = {deleteTableElement}
 
                 />
 
@@ -45,7 +46,7 @@ class InProgress extends React.Component {
                             className={flagAddButton ? "addTask" : "addTask addTaskOff"}
                             value="+Add card"
                             onClick ={onClickBtn}
-                            id="inprogress"
+                            id = "inprogress"
                         />
                         
                      </div>

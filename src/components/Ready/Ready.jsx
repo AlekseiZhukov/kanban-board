@@ -7,13 +7,14 @@ class Ready extends React.Component {
     
 
     render() {
-        const { state, onClickBtn, onClickListItem, onClickDropdown } = this.props;
+        const { state, onClickBtn, onClickListItem, onClickDropdown, deleteTableElement } = this.props;
         const flagAddButton = state.tasks.find(task => task.title === "backlog")
         return (
             <Fragment>
                 <Table
                     title="ready"
                     tasks={state.tasks}
+                    deleteTableElement = {deleteTableElement}
 
                     />
 

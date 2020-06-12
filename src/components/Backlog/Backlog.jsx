@@ -16,13 +16,15 @@ class Backlog extends React.Component {
    
         
         render() {
-            const {state, onChangeInput, onClickBtn, onClickBtnSubmit} = this.props;
+            const {state, onChangeInput, onClickBtn, onClickBtnSubmit, deleteTableElement} = this.props;
                         
             return (
                 <Fragment >
                     <Table
                     title="backlog"
                     tasks={state.tasks}
+                    deleteTableElement={deleteTableElement}
+
 
                     />
                     
@@ -37,8 +39,10 @@ class Backlog extends React.Component {
                         <Button
                             className="addTask"
                             value="+Add card"
-                            onClick ={onClickBtn}
+                            
                             id = "backlog"
+                            type="backlog"
+                            onClick = {onClickBtn}
                         />
 
                         <Button

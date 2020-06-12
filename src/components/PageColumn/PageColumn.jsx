@@ -1,6 +1,7 @@
 import React from 'react';
 import ListItem from '../ListItem/ListItem';
 import Button from '../Button/Button';
+import {Link } from "react-router-dom";
 
 
 class PageColumn extends React.Component {
@@ -29,18 +30,20 @@ class PageColumn extends React.Component {
         })
     }
     render () {
-        const {title, tasks, onClickBtn, onClickBtnSubmit, textareaHandleChange } = this.props
-        const {tasksDescription, taskId}= this.state
+        const {title, tasks, onClickBtn, onClickBtnSubmit, textareaHandleChange} = this.props;
+        const {tasksDescription, taskId}= this.state;
+        
         return (
             <div className ="pageColumn">
                 
-                    <h1>{title}</h1>
-                    <Button
+                    
+                <h1>{title}</h1>
+                <Link to="/"><Button
                         value = "X"
                         className = "closeBtnPageColumn"
                         onClick = {onClickBtn}
                         id = "btnClosePageColumn"
-                    />
+                    /> </Link>
                 
             {tasksDescription ?
                 <div className="pageColumn_task">
@@ -90,6 +93,8 @@ class PageColumn extends React.Component {
                     </div>
 
             }
+                
+            
             </div>
         )
     }

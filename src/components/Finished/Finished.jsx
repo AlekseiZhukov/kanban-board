@@ -8,13 +8,14 @@ class Finished extends React.Component {
 
 
     render () {
-        const { state, onClickBtn, onClickListItem, onClickDropdown } = this.props;
+        const { state, onClickBtn, onClickListItem, onClickDropdown, deleteTableElement } = this.props;
         const flagAddButton = state.tasks.find(task => task.title === "inprogress")
         return (
             <Fragment>
                 <Table
                     title="finished"
                     tasks={state.tasks}
+                    deleteTableElement={deleteTableElement}
 
                 />
 
@@ -45,7 +46,7 @@ class Finished extends React.Component {
                             className={flagAddButton ? "addTask" : "addTask addTaskOff"}
                             value="+Add card"
                             onClick ={onClickBtn}
-                            id="finished"
+                            id = "finished"
                         />
                         
                      </div>
