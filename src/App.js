@@ -8,7 +8,7 @@ import PageColumn from './components/PageColumn/PageColumn';
 import Button from './components/Button/Button';
 import Header from './components/Header/Header';
 import './App.css';
-import { BrowserRouter as Router, Route, Switch, Link} from "react-router-dom";
+import { HashRouter as Router, Route, Switch, Link} from "react-router-dom";
 
 
 
@@ -240,19 +240,14 @@ class App extends React.Component {
     return (
       
       <div className="wrapper">
-        
-        
-              <header className="header">
-                  <Header />
-              </header>
+            <header className="header">
+              <Header />
+            </header>
         <Router>
                   
           <Switch>
-            
-              
-          
-                <Route path="/backlog">
-                  
+               <Route path="/backlog">
+        
                   <PageColumn
                     textareaHandleChange = {this.textareaHandleChange}
                     title = "Backlog"
@@ -365,16 +360,12 @@ class App extends React.Component {
                 <footer className="footer">
                   <Footer tasks={this.state.tasks}   />
                 </footer>
-            
-          
-        
+
       </div>  
     
     )
   }
 }
  
-
-
 
 export default App;

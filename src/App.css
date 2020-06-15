@@ -37,12 +37,12 @@ h2 {
 
 .header_conteiner {
   max-width: 1235px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 55px;
-    color: #fff;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 55px;
+  color: #fff;
 }
 
 .header_conteiner_block {
@@ -51,16 +51,16 @@ h2 {
 
 
 .dropDownMenu {
-position: absolute;
-top: 50px;
-right: -5px;
-width: 100px;
-background: #fff;
-width: 134px;
-height: 60px;
-border-radius: 5px;
-font-size: 14px;
-color: black;
+  position: absolute;
+  top: 50px;
+  right: -5px;
+  width: 100px;
+  background: #fff;
+  width: 134px;
+  height: 60px;
+  border-radius: 5px;
+  font-size: 14px;
+  color: black;
 }
 
 .dropDownMenu::before {
@@ -92,9 +92,8 @@ color: black;
   display: flex;
   flex-flow: row wrap;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: center;
   
-  height: 85%;
       
 }
 
@@ -127,9 +126,10 @@ color: black;
 }
 
 .delTasks {
-  margin-bottom: 62px;
+  
   margin-left: 7px;
   background-color: #ebecf0;
+  
 }
 
 .table {
@@ -236,6 +236,8 @@ color: black;
   color: #fff;
   position: absolute;
   bottom: 0;
+
+  
 }
 
 .footer_wrapper {
@@ -331,4 +333,17 @@ color: black;
   max-width: 1200px;
   margin: 0 auto;
   
+}
+
+@media only screen and (max-device-width : 300px) {
+  h1 {
+    font-size: 14px;
+  }
+  h2 {
+    font-size: 12px;
+  }
+  p {
+    font-size: 10px;
+  }
+
 }
