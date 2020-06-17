@@ -3,12 +3,12 @@ import React from 'react';
 
 
 
-const ListItem = ({taskName, onClick, id, className, date}) => {
+const ListItem = ({taskName, onClick, id, classNameListItem, date}) => {
   
     return (
       
   <div className="ListItem">
-      <p id={id} className={className} onClick={onClick}>{taskName}</p>
+      <p id={id} className={classNameListItem} onClick={onClick}>{taskName}</p>
       {date && <p className ="date_string">task create : {date}</p>} 
         
   </div>

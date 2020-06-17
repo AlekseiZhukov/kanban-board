@@ -93,7 +93,7 @@ h2 {
   flex-flow: row wrap;
   align-items: flex-start;
   justify-content: center;
-  
+  margin-bottom: 65px;
       
 }
 
@@ -330,20 +330,34 @@ h2 {
   color: #000;
 }
 .container_btn {
-  max-width: 1200px;
+  max-width: 1235px;
   margin: 0 auto;
   
 }
 
-@media only screen and (max-device-width : 300px) {
+.footer_wrapper__author,
+  .footer_countValueBlock div {
+    margin: 0 10px;
+  }
+
+@media only screen and (max-device-width : 700px) {
   h1 {
     font-size: 14px;
   }
-  h2 {
+  h2,
+  p,
+  .tableElement,
+  .btn {
     font-size: 12px;
   }
-  p {
-    font-size: 10px;
+  
+  .footer {
+    position: relative;
+    font-size: 10px;    
   }
 
+  .conteiner {
+    height: 100%;
+  }
+  
 }

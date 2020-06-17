@@ -18,10 +18,10 @@ class Footer extends React.Component {
             return (
                 <div className="footer_wrapper">
                     <div className="footer_countValueBlock">
-                        <p> Active tasks: {activeTasks}</p>
-                        <p> Finished tasks: {finishedTasks}</p>
+                        <div> Active tasks: {activeTasks}</div>
+                        <div> Finished tasks: {finishedTasks}</div>
                     </div>
-                    <div>Kanban board by Aleksey Zhukov, 2020</div>
+                    <div className="footer_wrapper__author">Kanban board by Aleksey Zhukov, 2020</div>
                 </div>
             )        
         

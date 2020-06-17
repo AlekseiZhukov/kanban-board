@@ -1,17 +1,11 @@
 import React from 'react';
-import Backlog from './components/Backlog/Backlog';
-import Ready from './components/Ready/Ready';
-import InProgress from './components/InProgress/InProgress';
-import Finished from './components/Finished/Finished';
 import Footer from './components/Footer/Footer';
 import PageColumn from './components/PageColumn/PageColumn';
 import Button from './components/Button/Button';
 import Header from './components/Header/Header';
+import Column from './components/Column/Column';
 import './App.css';
 import { HashRouter as Router, Route, Switch, Link} from "react-router-dom";
-
-
-
 
  
 class App extends React.Component {
@@ -38,7 +32,7 @@ class App extends React.Component {
      
     }
 
-    handleClickOutside = (event) => {
+    /*handleClickOutside = (event) => {
         console.log(event.target);
       /*  if (event.target.class === "conteiner") {
           
@@ -47,8 +41,8 @@ class App extends React.Component {
             enabledDropdown: false,
           })
       
-      } */  
-  }
+      }   
+  }*/
 
   
 
@@ -108,8 +102,7 @@ class App extends React.Component {
 
   onClickBtn =(event) => {
     const {tasks} = this.state;
-    //console.log(type);
-    console.log(event.target.id);
+    
     if (event.target.id === "backlog") {
       this.setState({
         enabledInput: true,
@@ -153,7 +146,7 @@ class App extends React.Component {
   }
 
   onClickDropdown = (event) => {
-    
+    //console.log(event.target.id);
     this.setState({
       enabledListItem: true,
       nameListItem: event.target.id
@@ -193,7 +186,7 @@ class App extends React.Component {
 
 
   onClickBtnSubmit =(event)=> {
-    console.log('onClickBtnSubmit')
+    
     const {inputValue, tasks, textAreaValue} = this.state;
     const id = event.target.id;
     const date = new Date().toUTCString();
@@ -206,7 +199,7 @@ class App extends React.Component {
             textAreaValue: ''
           })
           return alert('Сохранено')
-        }
+        } else return null
       })
     } else {
 
@@ -230,7 +223,7 @@ class App extends React.Component {
       showPageColumn: true,
       namePageColumn: name,
     })
-    console.log(event.target.textContent);
+    
   }
 
   
@@ -300,8 +293,9 @@ class App extends React.Component {
                   <div className="conteiner">
                       <div className="block">
                       <Link className="activeLink" to="/backlog"><h1>Backlog</h1></Link>
-                        <Backlog
+                        <Column
                           state={this.state}
+                          title="backlog"
                           onClickBtn={this.onClickBtn}
                           onClickBtnSubmit={this.onClickBtnSubmit}
                           onChangeInput={this.onChangeInput}
@@ -312,7 +306,11 @@ class App extends React.Component {
 
                       <div className="block">
                       <Link className="activeLink" to="/ready"><h1>Ready</h1></Link>
-                        <Ready
+                        <Column
+                          title="ready"
+                          idDropdown ="dropdownReady"
+                          listItemColumn="backlog"
+                          classNameListItem="listItemReady"
                           state={this.state}
                           onClickBtn = {this.onClickBtn}
                           onClickDropdown = {this.onClickDropdown}
@@ -323,7 +321,11 @@ class App extends React.Component {
 
                       <div className="block">
                       <Link className="activeLink" to="/inprogress"><h1>In Progress</h1></Link>
-                        <InProgress
+                        <Column
+                          title="inprogress"
+                          idDropdown="dropdownInProgress"
+                          listItemColumn="ready"
+                          classNameListItem="listItemInprogress"
                           state={this.state}
                           onClickBtn = {this.onClickBtn}
                           onClickDropdown = {this.onClickDropdown}
@@ -334,7 +336,11 @@ class App extends React.Component {
 
                       <div className="block">
                       <Link className="activeLink" to="/finished"><h1>Finished</h1></Link>
-                        <Finished
+                        <Column
+                            title="finished"
+                            idDropdown="dropdownFinished"
+                            listItemColumn="inprogress"
+                            classNameListItem="listItemFinished"
                             state={this.state}
                             onClickBtn = {this.onClickBtn}
                             onClickDropdown = {this.onClickDropdown}
