@@ -52,7 +52,7 @@ class App extends React.Component {
     this.setState ({
       tasks: oldTasks,
     })}
-    document.addEventListener('mousedown', this.handleClickOutside);
+    //document.addEventListener('mousedown', this.handleClickOutside);
   }
   
   
@@ -62,7 +62,7 @@ class App extends React.Component {
   }
 
   componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleClickOutside);
+    //document.removeEventListener('mousedown', this.handleClickOutside);
 }
 
   clearLocalStorage = () => {

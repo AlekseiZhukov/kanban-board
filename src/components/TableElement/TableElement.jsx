@@ -7,16 +7,17 @@ import './style.css'
 const TableElement = ({taskName, id, deleteTableElement}) => {
   
     return (
-      
-  <div className="tableElement" id={id}>
-      {taskName}
-      <Button
-        value="del"
-        id={id}
-        onClick={deleteTableElement}
-      />
-        
-  </div>
+      <div className="tableElement">  
+        <div className="" id={id}>
+          <p>{taskName}</p>
+        </div>
+        <Button
+          className="delTaskFromTable"
+          value=""
+          id={id}
+          onClick={deleteTableElement}
+        />
+      </div>
   );
 
 }

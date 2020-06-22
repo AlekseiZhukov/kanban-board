@@ -123,12 +123,22 @@ h2 {
   font-size: 18px;
   font-family: 'Roboto', sans-serif;
   color: #5E6C84;
+  border: 0 none;
 }
 
 .delTasks {
-  
   margin-left: 7px;
   background-color: #ebecf0;
+  border-radius: 5px;
+}
+
+.delTaskFromTable {
+  background-image: url("./components/images/basket.svg");
+  background-size: cover;
+  outline: none;
+  padding: 2px;
+  width: 30px;
+  height: 30px;
   
 }
 
@@ -147,8 +157,14 @@ h2 {
   background-color: #fff;
   padding: 3px;
   margin-bottom: 15px;
-  height: 35px;
+  
   border-radius: 5px;
+  overflow: auto;
+  
+}
+.tableElement p {
+  margin: 0;
+  
 }
 
 
@@ -168,7 +184,7 @@ h2 {
 .dropdownOn {
   cursor: pointer;
 }
-.dropdownOn::before {
+/* .dropdownOn::before {
   content: "\2B9F";
   font-size: 30px;
   position: absolute;
@@ -176,7 +192,7 @@ h2 {
   right: 2px;
   color: #0079BF
   
-}
+} */
 
 .date_string {
   font-size: 14px;
@@ -218,9 +234,10 @@ h2 {
   font-weight: normal;
   outline: none;
   cursor: pointer;
+  border: 0 none;
 }
 .addTaskOff {
-  border: 0 none;
+  
   cursor: default;
 }
 
